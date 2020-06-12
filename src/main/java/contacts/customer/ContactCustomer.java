@@ -1,25 +1,29 @@
 package contacts.customer;
 
 import contacts.Contact;
+import org.hibernate.annotations.GenericGenerator;
 
-import javax.ejb.EJB;
-import javax.ejb.Stateful;
 import javax.persistence.*;
 
 @Entity
+@Table(name="ContactCustomer")
 public class ContactCustomer  implements Contact {
-    public String contactID = "";
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GenericGenerator(name="system-uuid", strategy = "uuid")
+    @Column(name="idcontactcustomer")
+    public int contactID = 0;
+    @Column(name="name")
     public String name= "";
+
     public ContactCustomer(){
     }
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    public String getContactID(){
+    public int getContactID(){
         return this.contactID;
     }
 
-    public void setContactID(String contactID) {
+    public void setContactID(int contactID) {
         this.contactID = contactID;
     }
 
